@@ -2,15 +2,16 @@
 
 // Create array to hold list of todo items
 $items = array();
-array_unshift($items, "phoney");
-unset($items[0]);
+//array_unshift($items, "phoney");
+//unset($items[0]);
 
 // The loop!
 do {
     // Iterate through list items
     foreach ($items as $key => $item) {
         // Display each item and a newline
-        echo "[{$key}] {$item}\n";
+        $key1 = $key + 1; 
+        echo "[{$key1}] {$item}\n";
     }
 
     // Show the menu options
@@ -27,7 +28,7 @@ do {
         // Add entry to list array
         $items[] = trim(fgets(STDIN));
     } elseif ($input == "R") {
-        // Remove which item?
+        // Remove which item? 
         echo 'Enter item number to remove: ';
         // Get array key
         $key = trim(fgets(STDIN));
