@@ -2,6 +2,8 @@
 
 // Create array to hold list of todo items
 $items = array();
+array_unshift($items, "phoney");
+unset($items[0]);
 
 // The loop!
 do {
@@ -16,15 +18,15 @@ do {
 
     // Get the input from user
     // Use trim() to remove whitespace and newlines
-    $input = trim(fgets(STDIN));
+    $input = trim(strtoupper(fgets(STDIN)));
 
     // Check for actionable input
-    if ($input == 'N') {
+    if ($input == "N") {
         // Ask for entry
         echo 'Enter item: ';
         // Add entry to list array
         $items[] = trim(fgets(STDIN));
-    } elseif ($input == 'R') {
+    } elseif ($input == "R") {
         // Remove which item?
         echo 'Enter item number to remove: ';
         // Get array key
@@ -33,7 +35,7 @@ do {
         unset($items[$key]);
     }
 // Exit when input is (Q)uit
-} while ($input != 'Q');
+} while ($input != "Q");
 
 // Say Goodbye!
 echo "Goodbye!\n";
