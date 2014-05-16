@@ -9,9 +9,8 @@ $items = array();
     // DO NOT USE ECHO, USE RETURN
 function list_items($list) {
     $result = '';
-    foreach ($list as $key => $value) {
-        $key++; 
-        $result .= $key . $value .  PHP_EOL;
+    foreach ($list as $key => $value) { 
+        $result .= "[" . ($key + 1) . "] $value .  PHP_EOL";
     } 
     return $result; 
 }
