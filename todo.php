@@ -12,7 +12,6 @@ function list_items($list) {
     foreach ($list as $key => $value) {
         $key++; 
         $result .= $key . $value .  PHP_EOL;
-       // $result .= $value . PHP_EOL; 
     } 
     return $result; 
 }
