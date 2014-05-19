@@ -10,11 +10,11 @@ $items = array();
 function list_items($list) {
     $result = '';
     foreach ($list as $key => $value) { 
-        $result .= "[" . ($key + 1) . "] $value .  PHP_EOL";
+        $result .= "[" . ($key + 1) . "] $value  \n";
     } 
     return $result; 
 }
-echo list_items($items); 
+ 
 
 
 // Get STDIN, strip whitespace and newlines, 
@@ -25,23 +25,45 @@ function get_input($upper = false) {
     return $upper ? strtoupper($result) : $result;
 } 
 
-function sort_menu() {
+function sort_menu($A) { 
+    echo '(A)-Z, (Z)-A, (O)rder entered, (R)everse order entered : '; 
+    $input = get_input(TRUE); 
+    
+    switch($input) {
+        case "A" : 
+            asort($A);
+            break;
+        case "Z" : 
+            arsort($A);
+            break;
+        case "O" : 
+            ksort($A);
+            break;
+        case "R" : 
+            krsort($A);
+            break;
+    }  
+    return $A; 
 
-}
+} 
 
+
+//print_r(sort_menu($items)); 
 
 
 // The loop!
 do {
     // Iterate through list items
-    foreach ($items as $key => $item) {
-        // Display each item and a newline
-        $key++; 
-        echo "[{$key}] {$item}\n";
-    }
+    // foreach ($items as $key => $item) {
+    //     // Display each item and a newline
+    //     $key++; 
+    //     echo "[{$key}] {$item}\n";
+    // }
 
+    
+    echo list_items($items);
     // Show the menu options
-    echo '(N)ew item, (R)emove item, (Q)uit, (S)ort : ';
+    echo '(N)ew item, (R)emove item, (S)ort, (Q)uit : ';
 
     // Get the input from user
     // Use trim() to remove whitespace and newlines
@@ -60,10 +82,13 @@ do {
         $key = get_input();
         // Remove from array 
         unset($items[$key - 1]); 
-        $items = array_values($items);
-    } elseif ($input == "S") {
-        echo '(A)-Z, (Z)-A, (O)rder entered, (R)everse order entered : '; 
-        $input = get_input(TRUE); 
+        //$items = array_values($items);
+    } elseif ($input == "S") {  
+       // echo '(A)-Z, (Z)-A, (O)rder entered, (R)everse order entered : '; 
+        //$input = get_input(TRUE); 
+        $items = sort_menu($items);
+        //echo list_items($items);
+
 
     }
 // Exit when input is (Q)uit
