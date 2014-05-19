@@ -25,6 +25,9 @@ function get_input($upper = false) {
     return $upper ? strtoupper($result) : $result;
 } 
 
+function sort_menu() {
+
+}
 
 
 
@@ -38,7 +41,7 @@ do {
     }
 
     // Show the menu options
-    echo '(N)ew item, (R)emove item, (Q)uit : ';
+    echo '(N)ew item, (R)emove item, (Q)uit, (S)ort : ';
 
     // Get the input from user
     // Use trim() to remove whitespace and newlines
@@ -55,9 +58,13 @@ do {
         echo 'Enter item number to remove: ';
         // Get array key
         $key = get_input();
-        // Remove from array
-        $key--; 
-        unset($items[$key]); 
+        // Remove from array 
+        unset($items[$key - 1]); 
+        $items = array_values($items);
+    } elseif ($input == "S") {
+        echo '(A)-Z, (Z)-A, (O)rder entered, (R)everse order entered : '; 
+        $input = get_input(TRUE); 
+
     }
 // Exit when input is (Q)uit
 } while ($input != "Q");
