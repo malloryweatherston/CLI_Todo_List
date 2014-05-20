@@ -7,10 +7,18 @@ $items = array();
     // [1] TODO item 1
     // [2] TODO item 2 - blah
     // DO NOT USE ECHO, USE RETURN
+// function list_items($list) {
+//     $result = '';
+//     foreach ($list as $key => $value) { 
+//         $result .= "[" . ($key + 1) . "]" $value . PHP_EOL;
+//     } 
+//     return $result; 
+// }
+
 function list_items($list) {
     $result = '';
     foreach ($list as $key => $value) { 
-        $result .= "[" . ($key + 1) . "] $value  \n";
+        $result .= "[" . ($key + 1) . "]" . " " . $value . PHP_EOL;
     } 
     return $result; 
 }
@@ -47,6 +55,35 @@ function sort_menu($A) {
 
 } 
 
+function beginning_or_end($items) {
+    echo "Enter item: \n";
+    $input = get_input(TRUE);
+
+    //$items[] = get_input();
+     echo "Do you want to add the new item to the beginning or end of the list? Enter (B) for beginning or (E) for end: \n";
+         //$items[] = get_input();   
+        //$input = get_input(TRUE);
+
+    $new_item = get_input(TRUE);
+
+    if ($new_item == "B") {
+        echo array_unshift($items, $input);
+    } elseif ($input == "E") {
+        echo array_push($items, $input); 
+    
+
+    // switch($input) {
+    //     case "B":
+    //         array_unshift($items, $new_item);
+    //         break;
+    //     case "E":
+    //         array_push($items, $new_item);
+    //         break;
+
+    }
+    return ($items);
+}
+
 
 //print_r(sort_menu($items)); 
 
@@ -72,22 +109,43 @@ do {
     // Check for actionable input
     if ($input == "N") {
         // Ask for entry
-        echo 'Enter item: ';
+        $items = beginning_or_end($items);
+        //$items = beginning_or_end($items);
+        //echo 'Enter item: ';
         // Add entry to list array
-        $items[] = get_input();
+        //$items[] = get_input();
+        // echo "Do you want to add the new item to the beginning or end of the list?\n
+        // Enter (B) for beginning or (E) for end: \n";
+        //$items[] = get_input();
+        //$items = beginning_or_end($items);
+    //     echo "Do you want to add the new item to the beginning or end of the list?\n
+    //     Enter (B) for beginning or (E) for end: \n";
+
+    // $input = get_input(TRUE); 
+
+    //$new_item = get_input();
+    
+    // switch($input) {
+    //     case "B":
+    //         array_unshift($items, $new_item);
+    //         break;
+    //     case "E":
+    //         array_push($items, $new_item);
+    //         break;
+    //     }
+
     } elseif ($input == "R") {
         // Remove which item?  
         echo 'Enter item number to remove: ';
         // Get array key
-        $key = get_input();
+        $key = (get_input()) - 1;
         // Remove from array 
         unset($items[$key - 1]); 
         //$items = array_values($items);
     } elseif ($input == "S") {  
-       // echo '(A)-Z, (Z)-A, (O)rder entered, (R)everse order entered : '; 
-        //$input = get_input(TRUE); 
+        
         $items = sort_menu($items);
-        //echo list_items($items);
+       
 
 
     }
