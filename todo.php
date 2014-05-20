@@ -59,10 +59,8 @@ function beginning_or_end($items) {
     echo "Enter item: \n";
     $input = get_input(TRUE);
 
-    //$items[] = get_input();
      echo "Do you want to add the new item to the beginning or end of the list? Enter (B) for beginning or (E) for end: \n";
-         //$items[] = get_input();   
-        //$input = get_input(TRUE);
+       
 
     $new_item = get_input(TRUE);
 
@@ -108,31 +106,8 @@ do {
 
     // Check for actionable input
     if ($input == "N") {
-        // Ask for entry
+        
         $items = beginning_or_end($items);
-        //$items = beginning_or_end($items);
-        //echo 'Enter item: ';
-        // Add entry to list array
-        //$items[] = get_input();
-        // echo "Do you want to add the new item to the beginning or end of the list?\n
-        // Enter (B) for beginning or (E) for end: \n";
-        //$items[] = get_input();
-        //$items = beginning_or_end($items);
-    //     echo "Do you want to add the new item to the beginning or end of the list?\n
-    //     Enter (B) for beginning or (E) for end: \n";
-
-    // $input = get_input(TRUE); 
-
-    //$new_item = get_input();
-    
-    // switch($input) {
-    //     case "B":
-    //         array_unshift($items, $new_item);
-    //         break;
-    //     case "E":
-    //         array_push($items, $new_item);
-    //         break;
-    //     }
 
     } elseif ($input == "R") {
         // Remove which item?  
