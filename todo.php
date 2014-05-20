@@ -68,9 +68,9 @@ function beginning_or_end($items) {
 
     if ($new_item == "B") {
         echo array_unshift($items, $input);
-    } elseif ($input == "E") {
+    } else {
         echo array_push($items, $input); 
-    
+
 
     // switch($input) {
     //     case "B":
@@ -148,6 +148,10 @@ do {
        
 
 
+    } elseif ($input == "F") {
+        array_shift($items); 
+    } elseif ($input == "L") {
+        array_pop($items); 
     }
 // Exit when input is (Q)uit
 } while ($input != "Q");
