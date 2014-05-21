@@ -7,13 +7,7 @@ $items = array();
     // [1] TODO item 1
     // [2] TODO item 2 - blah
     // DO NOT USE ECHO, USE RETURN
-// function list_items($list) {
-//     $result = '';
-//     foreach ($list as $key => $value) { 
-//         $result .= "[" . ($key + 1) . "]" $value . PHP_EOL;
-//     } 
-//     return $result; 
-// }
+
 
 function list_items($list) {
     $result = '';
@@ -68,16 +62,6 @@ function beginning_or_end($items) {
         echo array_unshift($items, $input);
     } else {
         echo array_push($items, $input); 
-
-
-    // switch($input) {
-    //     case "B":
-    //         array_unshift($items, $new_item);
-    //         break;
-    //     case "E":
-    //         array_push($items, $new_item);
-    //         break;
-
     }
     return ($items);
 }
@@ -117,19 +101,9 @@ function save_file($items) {
 
 
 
-
-//print_r(sort_menu($items)); 
-
-
 // The loop!
 do {
     // Iterate through list items
-    // foreach ($items as $key => $item) {
-    //     // Display each item and a newline
-    //     $key++; 
-    //     echo "[{$key}] {$item}\n";
-    // }
-
     
     echo list_items($items);
     // Show the menu options
@@ -141,7 +115,6 @@ do {
 
     // Check for actionable input
     if ($input == "N") {
-        
         $items = beginning_or_end($items);
 
     } elseif ($input == "R") {
@@ -151,22 +124,21 @@ do {
         $key = (get_input());
         // Remove from array 
         unset($items[$key - 1]); 
-        //$items = array_values($items);
-    } elseif ($input == "S") {  
         
+    } elseif ($input == "S") {  
         $items = sort_menu($items);
-       
-
 
     } elseif ($input == "F") {
         array_shift($items); 
+
     } elseif ($input == "L") {
-        array_pop($items); 
+        array_pop($items);
+
     } elseif ($input == "O") {
         $items = add_file($items);
-
+    
     } elseif ($input == "A") {
-       save_file($items);
+        save_file($items);
     }
 // Exit when input is (Q)uit
 } while ($input != "Q");
