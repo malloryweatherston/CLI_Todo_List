@@ -83,7 +83,8 @@ function beginning_or_end($items) {
 }
 
 function add_file($items) {
-    $filename = 'data/list.txt';
+     echo "Enter the file path you want to add: \n";
+    $filename = get_input(TRUE);
     $filesize = filesize($filename);
     $read = fopen($filename, "r"); 
     $string_list = trim(fread($read, $filesize));
@@ -125,7 +126,7 @@ do {
         // Remove which item?  
         echo 'Enter item number to remove: ';
         // Get array key
-        $key = (get_input()) - 1;
+        $key = (get_input());
         // Remove from array 
         unset($items[$key - 1]); 
         //$items = array_values($items);
