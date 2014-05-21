@@ -95,17 +95,26 @@ function add_file($items) {
 }
 
 function save_file($items) {
-     echo "Enter the file path you want to save: \n";
-        $filename = get_input(true);
-        $handle = fopen($filename, 'w');
-        foreach ($items as $item) {
-        fwrite(STDOUT, $item . PHP_EOL);
-    } 
-        fclose($handle);
-        echo "Save was successful\n";
-        return $items; 
+    echo "Enter the file path you want to save: \n";
+    $filename = get_input();
+    
+    if (file_exists($filename)) {
+        echo "The file $filename exists, do you want to overwrite the file? Enter Yes or No\n";
+     
+        $input = get_input(true);
+    
+        if ($input == "YES") {
+            $handle = fopen($filename, 'w');
+            foreach ($items as $item) {
+                fwrite($handle, $item . PHP_EOL);
+            } 
+            echo "Save was successful\n";
+            fclose($handle);
+        
+        }
+    }
+} 
 
-}
 
 
 
@@ -154,10 +163,10 @@ do {
     } elseif ($input == "L") {
         array_pop($items); 
     } elseif ($input == "O") {
-         $items = add_file($items);
+        $items = add_file($items);
 
     } elseif ($input == "A") {
-       $items = save_file($items);
+       save_file($items);
     }
 // Exit when input is (Q)uit
 } while ($input != "Q");
