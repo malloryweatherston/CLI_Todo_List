@@ -81,8 +81,15 @@ function add_file($items) {
 function save_file($items) {
     echo "Enter the file path you want to save: \n";
     $filename = get_input();
-    
-    if (file_exists($filename)) {
+    if (!file_exists($filename)) {
+        $handle = fopen($filename, 'w');
+        foreach ($items as $item) {
+            fwrite($handle, $item . PHP_EOL);
+        } 
+            echo "Save was successful\n";
+            fclose($handle);
+
+    }else {
         echo "The file $filename exists, do you want to overwrite the file? Enter Yes or No\n";
      
         $input = get_input(true);
