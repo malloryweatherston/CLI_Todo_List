@@ -57,7 +57,7 @@ function sort_menu($A) {
 
 function beginning_or_end($items) {
     echo "Enter item: \n";
-    $input = get_input(TRUE);
+    $input = get_input(false);
 
      echo "Do you want to add the new item to the beginning or end of the list? Enter (B) for beginning or (E) for end: \n";
        
