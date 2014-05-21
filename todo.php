@@ -94,6 +94,19 @@ function add_file($items) {
     return ($output);
 }
 
+function save_file($items) {
+     echo "Enter the file path you want to save: \n";
+        $filename = get_input(true);
+        $handle = fopen($filename, 'w');
+        foreach ($items as $item) {
+        fwrite(STDOUT, $item . PHP_EOL);
+    } 
+        fclose($handle);
+        echo "Save was successful\n";
+        return $items; 
+
+}
+
 
 
 //print_r(sort_menu($items)); 
@@ -111,7 +124,7 @@ do {
     
     echo list_items($items);
     // Show the menu options
-    echo '(N)ew item, (R)emove item, (S)ort, (O)pen, (Q)uit : ';
+    echo '(N)ew item, (R)emove item, (S)ort, (O)pen, s(A)ve, (Q)uit : ';
 
     // Get the input from user
     // Use trim() to remove whitespace and newlines
@@ -143,6 +156,8 @@ do {
     } elseif ($input == "O") {
          $items = add_file($items);
 
+    } elseif ($input == "A") {
+       $items = save_file($items);
     }
 // Exit when input is (Q)uit
 } while ($input != "Q");
