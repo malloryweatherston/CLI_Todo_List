@@ -82,6 +82,18 @@ function beginning_or_end($items) {
     return ($items);
 }
 
+function add_file($items) {
+    $filename = 'data/list.txt';
+    $filesize = filesize($filename);
+    $read = fopen($filename, "r"); 
+    $string_list = trim(fread($read, $filesize));
+    $list_array = explode("\n", $string_list);
+    $output = array_merge($items, $list_array);
+    fclose($read);
+    return ($output);
+}
+
+
 
 //print_r(sort_menu($items)); 
 
@@ -98,7 +110,7 @@ do {
     
     echo list_items($items);
     // Show the menu options
-    echo '(N)ew item, (R)emove item, (S)ort, (Q)uit : ';
+    echo '(N)ew item, (R)emove item, (S)ort, (O)pen, (Q)uit : ';
 
     // Get the input from user
     // Use trim() to remove whitespace and newlines
@@ -127,6 +139,9 @@ do {
         array_shift($items); 
     } elseif ($input == "L") {
         array_pop($items); 
+    } elseif ($input == "O") {
+         $items = add_file($items);
+
     }
 // Exit when input is (Q)uit
 } while ($input != "Q");
